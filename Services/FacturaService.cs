@@ -21,34 +21,89 @@ namespace SencomFacturacion.Services
         public List<Factura> ObtenerFacturas()
         {
             var lista = new List<Factura>();
-            foreach (var linea in File.ReadAllLines(_filePath))
+
+            if (!File.Exists(_filePath))
+                return lista;
+
+            var lineas = File.ReadAllLines(_filePath);
+
+            foreach (var linea in lineas)
             {
-                if (string.IsNullOrWhiteSpace(linea)) continue;
+                if (string.IsNullOrWhiteSpace(linea))
+                    continue;
+
                 var p = linea.Split('|');
-                if (p.Length < 11) continue;
 
-                var fac = new Factura
+                try
                 {
-                    Id = int.Parse(p[0]),
-                    Cliente = new Cliente
+                    if (p.Length == 9)
                     {
-                        Nombre = p[1],
-                        Direccion = p[2],
-                        Telefono = p[3],
-                        Email = p[4]
-                    },
-                    CapacidadMensualKw = decimal.Parse(p[5]),
-                    MesesFuncionamiento = int.Parse(p[6]),
-                    ProduccionMensual = p[7].Split(',').Select(x => decimal.Parse(x)).ToList(),
-                    ConsumoTotalKw = decimal.Parse(p[8]),
-                    MontoTotal = decimal.Parse(p[9]),
-                    FechaCreacion = DateTime.Parse(p[10])
-                };
+                        // Formato viejo:
+                        // 0=id |1=nombre |2=dir |3=cap |4=meses |5=producciones |6=consumo |7=monto |8=fecha
 
-                lista.Add(fac);
+                        var factura = new Factura
+                        {
+                            Id = int.Parse(p[0]),
+                            Cliente = new Cliente
+                            {
+                                Nombre = p[1],
+                                Direccion = p[2],
+                                Telefono = "",   // vacío
+                                Email = ""       // vacío
+                            },
+                            CapacidadMensualKw = decimal.Parse(p[3]),
+                            MesesFuncionamiento = int.Parse(p[4]),
+                            ProduccionMensual = p[5].Split(',')
+                                .Where(x => !string.IsNullOrWhiteSpace(x))
+                                .Select(x => decimal.Parse(x))
+                                .ToList(),
+                            ConsumoTotalKw = decimal.Parse(p[6]),
+                            MontoTotal = decimal.Parse(p[7]),
+                            FechaCreacion = DateTime.Parse(p[8])
+                        };
+
+                        lista.Add(factura);
+                    }
+                    else if (p.Length >= 11)
+                    {
+                        // Formato nuevo:
+                        // 0=id |1=nombre |2=dir |3=tel |4=email |5=cap |6=meses |7=producciones |8=consumo |9=monto |10=fecha
+
+                        var factura = new Factura
+                        {
+                            Id = int.Parse(p[0]),
+                            Cliente = new Cliente
+                            {
+                                Nombre = p[1],
+                                Direccion = p[2],
+                                Telefono = p[3],
+                                Email = p[4]
+                            },
+                            CapacidadMensualKw = decimal.Parse(p[5]),
+                            MesesFuncionamiento = int.Parse(p[6]),
+                            ProduccionMensual = p[7].Split(',')
+                                .Where(x => !string.IsNullOrWhiteSpace(x))
+                                .Select(x => decimal.Parse(x))
+                                .ToList(),
+                            ConsumoTotalKw = decimal.Parse(p[8]),
+                            MontoTotal = decimal.Parse(p[9]),
+                            FechaCreacion = DateTime.Parse(p[10])
+                        };
+
+                        lista.Add(factura);
+                    }
+                    // si no es ni 9 ni 11 campos, ignoramos la línea
+                }
+                catch
+                {
+                    // Si una línea está dañada, la saltamos para no romper todo
+                    continue;
+                }
             }
+
             return lista;
         }
+
 
         public Factura CrearFactura(Factura factura)
         {

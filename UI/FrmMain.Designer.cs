@@ -6,14 +6,16 @@
 
         private System.Windows.Forms.Panel panelTop;
         private System.Windows.Forms.Label lblTitulo;
-        private System.Windows.Forms.Button btnNuevaFactura;
+        private System.Windows.Forms.Button btnTheme;
+
+        private System.Windows.Forms.Button btnFacturas;
         private System.Windows.Forms.Button btnHistorial;
-        private System.Windows.Forms.Button btnGestionUsuarios;
+        private System.Windows.Forms.Button btnUsuarios;
         private System.Windows.Forms.Button btnSalir;
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && components != null) components.Dispose();
+            if (disposing && (components != null)) components.Dispose();
             base.Dispose(disposing);
         }
 
@@ -21,9 +23,10 @@
         {
             this.panelTop = new System.Windows.Forms.Panel();
             this.lblTitulo = new System.Windows.Forms.Label();
-            this.btnNuevaFactura = new System.Windows.Forms.Button();
+            this.btnTheme = new System.Windows.Forms.Button();
+            this.btnFacturas = new System.Windows.Forms.Button();
             this.btnHistorial = new System.Windows.Forms.Button();
-            this.btnGestionUsuarios = new System.Windows.Forms.Button();
+            this.btnUsuarios = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.panelTop.SuspendLayout();
             this.SuspendLayout();
@@ -35,73 +38,87 @@
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(386, 70);
-            this.panelTop.TabIndex = 0;
+            this.panelTop.Size = new System.Drawing.Size(375, 70);
+            this.panelTop.TabIndex = 4;
             // 
             // lblTitulo
             // 
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
             this.lblTitulo.ForeColor = System.Drawing.Color.White;
-            this.lblTitulo.Location = new System.Drawing.Point(20, 20);
+            this.lblTitulo.Location = new System.Drawing.Point(20, 18);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(348, 37);
             this.lblTitulo.TabIndex = 0;
-            this.lblTitulo.Text = "SENCOM - Menú Principal";
+            this.lblTitulo.Text = "Menú Principal - SENCOM";
             // 
-            // btnNuevaFactura
+            // btnTheme
             // 
-            this.btnNuevaFactura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(176)))), ((int)(((byte)(175)))));
-            this.btnNuevaFactura.Location = new System.Drawing.Point(73, 100);
-            this.btnNuevaFactura.Name = "btnNuevaFactura";
-            this.btnNuevaFactura.Size = new System.Drawing.Size(250, 50);
-            this.btnNuevaFactura.TabIndex = 1;
-            this.btnNuevaFactura.Text = "Crear Nueva Factura";
-            this.btnNuevaFactura.UseVisualStyleBackColor = false;
+            this.btnTheme.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.btnTheme.Location = new System.Drawing.Point(285, 76);
+            this.btnTheme.Name = "btnTheme";
+            this.btnTheme.Size = new System.Drawing.Size(90, 30);
+            this.btnTheme.TabIndex = 1;
+            this.btnTheme.Text = "Theme";
+            this.btnTheme.UseVisualStyleBackColor = false;
+            this.btnTheme.Click += new System.EventHandler(this.btnTheme_Click);
+            // 
+            // btnFacturas
+            // 
+            this.btnFacturas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(176)))), ((int)(((byte)(175)))));
+            this.btnFacturas.Location = new System.Drawing.Point(40, 112);
+            this.btnFacturas.Name = "btnFacturas";
+            this.btnFacturas.Size = new System.Drawing.Size(250, 40);
+            this.btnFacturas.TabIndex = 0;
+            this.btnFacturas.Text = "Crear Factura";
+            this.btnFacturas.UseVisualStyleBackColor = false;
+            this.btnFacturas.Click += new System.EventHandler(this.btnNuevaFactura_Click);
             // 
             // btnHistorial
             // 
             this.btnHistorial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(176)))), ((int)(((byte)(175)))));
-            this.btnHistorial.Location = new System.Drawing.Point(73, 166);
+            this.btnHistorial.Location = new System.Drawing.Point(40, 173);
             this.btnHistorial.Name = "btnHistorial";
-            this.btnHistorial.Size = new System.Drawing.Size(250, 50);
-            this.btnHistorial.TabIndex = 2;
-            this.btnHistorial.Text = "Historial de Facturas";
+            this.btnHistorial.Size = new System.Drawing.Size(250, 40);
+            this.btnHistorial.TabIndex = 1;
+            this.btnHistorial.Text = "Historial";
             this.btnHistorial.UseVisualStyleBackColor = false;
+            this.btnHistorial.Click += new System.EventHandler(this.btnHistorial_Click);
             // 
-            // btnGestionUsuarios
+            // btnUsuarios
             // 
-            this.btnGestionUsuarios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(176)))), ((int)(((byte)(175)))));
-            this.btnGestionUsuarios.Location = new System.Drawing.Point(73, 234);
-            this.btnGestionUsuarios.Name = "btnGestionUsuarios";
-            this.btnGestionUsuarios.Size = new System.Drawing.Size(250, 50);
-            this.btnGestionUsuarios.TabIndex = 3;
-            this.btnGestionUsuarios.Text = "Gestión de Usuarios";
-            this.btnGestionUsuarios.UseVisualStyleBackColor = false;
+            this.btnUsuarios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(176)))), ((int)(((byte)(175)))));
+            this.btnUsuarios.Location = new System.Drawing.Point(40, 240);
+            this.btnUsuarios.Name = "btnUsuarios";
+            this.btnUsuarios.Size = new System.Drawing.Size(250, 40);
+            this.btnUsuarios.TabIndex = 2;
+            this.btnUsuarios.Text = "Usuarios";
+            this.btnUsuarios.UseVisualStyleBackColor = false;
+            this.btnUsuarios.Click += new System.EventHandler(this.btnGestionUsuarios_Click);
             // 
             // btnSalir
             // 
             this.btnSalir.BackColor = System.Drawing.Color.IndianRed;
-            this.btnSalir.ForeColor = System.Drawing.Color.White;
-            this.btnSalir.Location = new System.Drawing.Point(73, 310);
+            this.btnSalir.Location = new System.Drawing.Point(40, 300);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(250, 50);
-            this.btnSalir.TabIndex = 4;
+            this.btnSalir.Size = new System.Drawing.Size(250, 40);
+            this.btnSalir.TabIndex = 3;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = false;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // FrmMain
             // 
-            this.ClientSize = new System.Drawing.Size(386, 400);
-            this.Controls.Add(this.panelTop);
-            this.Controls.Add(this.btnNuevaFactura);
+            this.ClientSize = new System.Drawing.Size(375, 362);
+            this.Controls.Add(this.btnFacturas);
+            this.Controls.Add(this.btnTheme);
             this.Controls.Add(this.btnHistorial);
-            this.Controls.Add(this.btnGestionUsuarios);
+            this.Controls.Add(this.btnUsuarios);
             this.Controls.Add(this.btnSalir);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Controls.Add(this.panelTop);
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Menú Principal";
+            this.Load += new System.EventHandler(this.FrmMain_Load);
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
             this.ResumeLayout(false);

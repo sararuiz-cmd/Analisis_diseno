@@ -62,6 +62,24 @@
     <Compile Include="Services\FacturaService.cs" />
     <Compile Include="Services\PdfService.cs" />
     <Compile Include="Services\ThemeManager.cs" />
+    <Compile Include="UI\FrmFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmFactura.Designer.cs">
+      <DependentUpon>FrmFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmGestionUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmGestionUsuarios.Designer.cs">
+      <DependentUpon>FrmGestionUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmHistorialFacturas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmHistorialFacturas.Designer.cs">
+      <DependentUpon>FrmHistorialFacturas.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +101,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\FrmFactura.resx">
+      <DependentUpon>FrmFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmGestionUsuarios.resx">
+      <DependentUpon>FrmGestionUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmHistorialFacturas.resx">
+      <DependentUpon>FrmHistorialFacturas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>

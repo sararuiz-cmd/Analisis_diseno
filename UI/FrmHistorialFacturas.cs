@@ -3,6 +3,7 @@ using SencomFacturacion.Domain;
 using SencomFacturacion.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SencomFacturacion.UI
@@ -30,30 +31,46 @@ namespace SencomFacturacion.UI
         {
             _facturas = _facturaService.ObtenerFacturas();
 
-            // Limpiar columnas para regenerarlas
-            dgvFacturas.Columns.Clear();
-            dgvFacturas.DataSource = _facturas;
+            // Debug rápido para saber cuántas se leyeron
+            // (lo puedes quitar luego)
+            MessageBox.Show($"Facturas leídas: {_facturas.Count}", "Debug");
 
-            // Columnas del cliente
-            dgvFacturas.Columns.Add("ClienteNombre", "Cliente");
-            dgvFacturas.Columns["ClienteNombre"].DataPropertyName = "Cliente.Nombre";
+            if (_facturas == null || _facturas.Count == 0)
+            {
+                dgvFacturas.DataSource = null;
+                return;
+            }
 
-            dgvFacturas.Columns.Add("Direccion", "Dirección");
-            dgvFacturas.Columns["Direccion"].DataPropertyName = "Cliente.Direccion";
+            // Proyección PLANA para el DataGridView (sin propiedades anidadas)
+            var data = _facturas.Select(f => new
+            {
+                ID = f.Id,
+                Cliente = f.Cliente?.Nombre,
+                Direccion = f.Cliente?.Direccion,
+                Telefono = f.Cliente?.Telefono,
+                Email = f.Cliente?.Email,
+                Consumo = f.ConsumoTotalKw,
+                Monto = f.MontoTotal,
+                Fecha = f.FechaCreacion
+            }).ToList();
 
-            dgvFacturas.Columns.Add("Telefono", "Teléfono");
-            dgvFacturas.Columns["Telefono"].DataPropertyName = "Cliente.Telefono";
-
-            dgvFacturas.Columns.Add("Email", "Email");
-            dgvFacturas.Columns["Email"].DataPropertyName = "Cliente.Email";
+            dgvFacturas.AutoGenerateColumns = true;
+            dgvFacturas.DataSource = null;      // forzar refresh
+            dgvFacturas.DataSource = data;
         }
+
+
 
 
         private Factura ObtenerFacturaSeleccionada()
         {
             if (dgvFacturas.CurrentRow == null) return null;
-            return dgvFacturas.CurrentRow.DataBoundItem as Factura;
+
+            int id = Convert.ToInt32(dgvFacturas.CurrentRow.Cells["ID"].Value);
+
+            return _facturas.FirstOrDefault(f => f.Id == id);
         }
+
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
@@ -105,6 +122,16 @@ namespace SencomFacturacion.UI
                     MessageBox.Show("PDF generado correctamente.");
                 }
             }
+        }
+
+        private void dgvFacturas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void panelTop_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

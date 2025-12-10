@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Analisis_diseno.Services
+namespace SencomFacturacion.Services
 {
     public class AuthServices
     {
@@ -56,7 +56,7 @@ namespace Analisis_diseno.Services
 
         private string HashPassword(string password)
         {
-            using var sha = SHA256.Create();
+            var sha = SHA256.Create();
             byte[] hash = sha.ComputeHash(Encoding.UTF8.GetBytes(password));
             return BitConverter.ToString(hash).Replace("-", "").ToLower();
         }

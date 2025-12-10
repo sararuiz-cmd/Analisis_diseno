@@ -12,6 +12,9 @@
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnRegistrar;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button button1;   // Theme button
 
         protected override void Dispose(bool disposing)
         {
@@ -32,6 +35,7 @@
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -56,7 +60,6 @@
             this.lblTitulo.Size = new System.Drawing.Size(355, 37);
             this.lblTitulo.TabIndex = 0;
             this.lblTitulo.Text = "SENCOM - Inicio de Sesión";
-            this.lblTitulo.Click += new System.EventHandler(this.lblTitulo_Click);
             // 
             // lblUsuario
             // 
@@ -100,6 +103,7 @@
             this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "Iniciar Sesión";
             this.btnLogin.UseVisualStyleBackColor = false;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // btnRegistrar
             // 
@@ -110,6 +114,7 @@
             this.btnRegistrar.TabIndex = 6;
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.UseVisualStyleBackColor = false;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // pictureBox1
             // 
@@ -127,11 +132,22 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(414, 70);
             this.panel1.TabIndex = 8;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint_1);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.button1.Location = new System.Drawing.Point(303, 76);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(99, 27);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Theme";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FrmLogin
             // 
             this.ClientSize = new System.Drawing.Size(414, 607);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panelTop);
@@ -145,6 +161,7 @@
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.FrmLogin_Load);
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -152,8 +169,5 @@
             this.PerformLayout();
 
         }
-
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panel1;
     }
 }

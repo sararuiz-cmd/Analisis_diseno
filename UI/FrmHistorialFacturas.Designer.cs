@@ -38,6 +38,7 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(800, 70);
             this.panelTop.TabIndex = 0;
+            this.panelTop.Paint += new System.Windows.Forms.PaintEventHandler(this.panelTop_Paint);
             // 
             // lblTitulo
             // 
@@ -63,6 +64,7 @@
             this.dgvFacturas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvFacturas.Size = new System.Drawing.Size(750, 300);
             this.dgvFacturas.TabIndex = 1;
+            this.dgvFacturas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFacturas_CellContentClick);
             // 
             // btnEditar
             // 
@@ -73,6 +75,7 @@
             this.btnEditar.TabIndex = 2;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = false;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnEliminar
             // 
@@ -84,6 +87,7 @@
             this.btnEliminar.TabIndex = 3;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnExportarPdf
             // 
@@ -94,6 +98,7 @@
             this.btnExportarPdf.TabIndex = 4;
             this.btnExportarPdf.Text = "Exportar PDF";
             this.btnExportarPdf.UseVisualStyleBackColor = false;
+            this.btnExportarPdf.Click += new System.EventHandler(this.btnExportarPdf_Click);
             // 
             // FrmHistorialFacturas
             // 

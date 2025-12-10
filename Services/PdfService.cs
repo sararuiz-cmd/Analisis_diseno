@@ -10,14 +10,14 @@ using System.Xml.Linq;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
-namespace Analisis_diseno.Services
+namespace SencomFacturacion.Services
 {
     public class PdfService
     {
         public void ExportarFactura(Factura factura, string ruta)
         {
-            using var fs = new FileStream(ruta, FileMode.Create);
-            using var doc = new Document(PageSize.A4, 40, 40, 40, 40);
+            var fs = new FileStream(ruta, FileMode.Create);
+            var doc = new Document(PageSize.A4, 40, 40, 40, 40);
             PdfWriter.GetInstance(doc, fs);
             doc.Open();
 

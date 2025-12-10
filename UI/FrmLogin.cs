@@ -7,12 +7,12 @@ namespace SencomFacturacion.UI
 {
     public partial class FrmLogin : Form
     {
-        private readonly AuthService _authService;
+        private readonly AuthServices _authService;
 
         public FrmLogin()
         {
             InitializeComponent();
-            _authService = new AuthService();
+            _authService = new AuthServices();
         }
 
         private void FrmLogin_Load(object sender, EventArgs e)
@@ -85,5 +85,26 @@ namespace SencomFacturacion.UI
         {
 
         }
+
+        private void FrmLogin_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Cambiar de claro a oscuro o viceversa
+            ThemeManager.ToggleTheme();
+
+            // Aplicar el tema a todos los formularios abiertos
+            ThemeManager.ApplyThemeToAllOpenForms();
+
+            // Actualizar el texto del botón según el tema actual
+            if (ThemeManager.CurrentTheme == ThemeManager.AppTheme.Light)
+                button1.Text = "Theme";        // tema original
+            else
+                button1.Text = "Claro";        // botón para volver al claro
+        }
+
     }
 }

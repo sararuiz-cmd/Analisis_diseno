@@ -29,7 +29,6 @@ namespace SencomFacturacion.UI
                 txtNombreCliente.Text = _facturaEdicion.Cliente.Nombre;
                 txtDireccion.Text = _facturaEdicion.Cliente.Direccion;
 
-                // 🔹 NUEVO: cargar teléfono y email
                 txtTelefono.Text = _facturaEdicion.Cliente.Telefono;
                 txtEmail.Text = _facturaEdicion.Cliente.Email;
 
@@ -39,17 +38,23 @@ namespace SencomFacturacion.UI
             }
         }
 
+        // 🔥 BOTÓN THEME
+        private void btnTheme_Click(object sender, EventArgs e)
+        {
+            ThemeManager.ToggleTheme();              // Cambiar Light ↔ Dark
+            ThemeManager.ApplyThemeToAllOpenForms(); // Repintar todos los formularios
+        }
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             string nombre = txtNombreCliente.Text.Trim();
             string direccion = txtDireccion.Text.Trim();
-            string telefono = txtTelefono.Text.Trim();   // 🔹 NUEVO
-            string email = txtEmail.Text.Trim();         // 🔹 NUEVO
+            string telefono = txtTelefono.Text.Trim();
+            string email = txtEmail.Text.Trim();
 
             decimal capacidad = numCapacidadMensual.Value;
             int meses = (int)numMeses.Value;
 
-            // VALIDACIONES
             if (string.IsNullOrWhiteSpace(nombre) ||
                 string.IsNullOrWhiteSpace(direccion) ||
                 string.IsNullOrWhiteSpace(telefono) ||
@@ -65,12 +70,11 @@ namespace SencomFacturacion.UI
                 return;
             }
 
-            // Producciones separadas por coma
             List<decimal> producciones;
             try
             {
                 producciones = txtProducciones.Text
-                    .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                    .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(p => decimal.Parse(p.Trim()))
                     .ToList();
             }
@@ -92,16 +96,14 @@ namespace SencomFacturacion.UI
                 return;
             }
 
-            // OBJETO CLIENTE COMPLETO
             var cliente = new Cliente
             {
                 Nombre = nombre,
                 Direccion = direccion,
-                Telefono = telefono,   // 🔹 NUEVO
-                Email = email          // 🔹 NUEVO
+                Telefono = telefono,
+                Email = email
             };
 
-            // NUEVA FACTURA
             if (_facturaEdicion == null)
             {
                 var nueva = new Factura
@@ -115,7 +117,7 @@ namespace SencomFacturacion.UI
                 _facturaService.CrearFactura(nueva);
                 MessageBox.Show("Factura creada correctamente.");
             }
-            else // EDICIÓN DE FACTURA
+            else
             {
                 _facturaEdicion.Cliente = cliente;
                 _facturaEdicion.CapacidadMensualKw = capacidad;
@@ -132,16 +134,6 @@ namespace SencomFacturacion.UI
             }
 
             this.Close();
-        }
-
-        private void FrmFactura_Load_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblProduccion_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

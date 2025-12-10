@@ -7,12 +7,12 @@ namespace SencomFacturacion.UI
 {
     public partial class FrmGestionUsuarios : Form
     {
-        private readonly AuthService _authService;
+        private readonly AuthServices _authService;
 
         public FrmGestionUsuarios()
         {
             InitializeComponent();
-            _authService = new AuthService();
+            _authService = new AuthServices();
         }
 
         private void FrmGestionUsuarios_Load(object sender, EventArgs e)
@@ -31,6 +31,16 @@ namespace SencomFacturacion.UI
         private void btnRefrescar_Click(object sender, EventArgs e)
         {
             CargarUsuarios();
+        }
+
+        private void FrmGestionUsuarios_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
