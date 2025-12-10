@@ -59,6 +59,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthServices.cs" />
+    <Compile Include="Services\FacturaService.cs" />
     <Compile Include="Services\PdfService.cs" />
     <Compile Include="UI\FrmLogin.cs">
       <SubType>Form</SubType>
