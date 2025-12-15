@@ -19,6 +19,8 @@
 
         private void InitializeComponent()
         {
+            this.Load += new System.EventHandler(this.FrmHistorialFacturas_Load);
+
             this.panelTop = new System.Windows.Forms.Panel();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.dgvFacturas = new System.Windows.Forms.DataGridView();
